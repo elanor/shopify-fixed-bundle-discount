@@ -65,10 +65,10 @@ describe('bundle builder', () => {
     };
 
     const result = run(input);
-    console.log(JSON.stringify(result, null, 2)); // Detailed output of the result
+    console.log(JSON.stringify(result, null, 2)); 
     expect(result.discounts.length).toBe(1);
     expect(result.discounts[0].message).toContain('Buy 6 fruits for $17');
     const discountAmount = parseFloat(result.discounts[0]?.value?.fixedAmount?.amount ?? '0');
-    expect(discountAmount).toBeCloseTo(48.7, 2); // Adjust based on actual calculation
+    expect(discountAmount).toBeCloseTo(48.7, 2); 
   });
 });
