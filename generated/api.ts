@@ -1207,8 +1207,29 @@ export enum DeliveryMethod {
   Shipping = 'SHIPPING'
 }
 
+// /** The discount to be applied. */
+// export type Discount = {
+//   /** The discount message. */
+//   message?: InputMaybe<Scalars['String']>;
+//   /** The targets of the discount. */
+//   targets: Array<Target>;
+//   /** The value of the discount. */
+//   value: Value;
+// };
+
+
+/** The method by which the discount's value is allocated to its entitled items. */
+export enum DiscountAllocationMethod {
+  /** Allocate the discount value across all entitled items. */
+  Across = 'ACROSS',
+  /** Allocate the discount value to each entitled item. */
+  Each = 'EACH'
+}
+
 /** The discount to be applied. */
 export type Discount = {
+  /** The method by which the discount's value is allocated to its entitled items. */
+  allocationMethod?: DiscountAllocationMethod;
   /** The discount message. */
   message?: InputMaybe<Scalars['String']>;
   /** The targets of the discount. */
@@ -2016,6 +2037,5 @@ export enum WeightUnit {
 export type InputQueryVariables = Exact<{
   collections?: InputMaybe<Array<Scalars['ID']> | Scalars['ID']>;
 }>;
-
 
 export type InputQuery = { __typename?: 'Input', cart: { __typename?: 'Cart', buyerIdentity?: { __typename?: 'BuyerIdentity', purchasingCompany?: { __typename?: 'PurchasingCompany', company: { __typename?: 'Company', id: string } } | null } | null, lines: Array<{ __typename?: 'CartLine', id: string, quantity: number, sellingPlanAllocation?: { __typename?: 'SellingPlanAllocation', sellingPlan: { __typename?: 'SellingPlan', id: string, name: string, recurringDeliveries: boolean } } | null, cost: { __typename?: 'CartLineCost', amountPerQuantity: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename: 'CustomProduct' } | { __typename: 'ProductVariant', id: string, product: { __typename?: 'Product', id: string, inAnyCollection: boolean } } }> }, discountNode: { __typename?: 'DiscountNode', metafield?: { __typename?: 'Metafield', value: string } | null } };
